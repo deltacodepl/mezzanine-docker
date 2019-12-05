@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN apt-add-repository ppa:fkrull/deadsnakes
 RUN apt-get update && apt-get install -y --no-install-recommends \
       python2.7
-#RUN rm -f /usr/bin/python3 && ln -s /usr/bin/python3.2 /usr/bin/python3
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
       python-dev \
       python-pip \

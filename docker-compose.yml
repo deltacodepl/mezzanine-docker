@@ -8,8 +8,9 @@ services:
     volumes:
       - ./mezzanine:/srv/mezzanine
       - mezzanine_nginx_config:/etc/nginx/conf.d
+
     environment:
-      MEZZANINE_PROJECT: project
+      MEZZANINE_PROJECT: khorlo
 
   nginx:
     image: nginx:stable
@@ -31,4 +32,8 @@ services:
     ports:
       - 80:8080/tcp
       # - 443:443/tcp
+
+volumes:
+  mezzanine_nginx_config: {}
+  mezzanine_projects: {}
 
