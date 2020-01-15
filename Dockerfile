@@ -15,7 +15,7 @@ ENV GUNICORN_PORT="8000"
 
 ENV MEZZANINE_UID="78950" MEZZANINE_GID="78950"
 
-
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update && apt-get install -y --no-install-recommends \
       gcc \
       libjpeg-dev \
@@ -28,11 +28,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       python-dev \
       python-pip \
       zlib1g \
-      zlib1g-dev && \
-    pip install --upgrade setuptools pip && \
-    pip install --upgrade \
-      mezzanine${MEZZANINE_VERSION} \
-      gunicorn${GUNICORN_VERSION}
+      zlib1g-dev
+RUN pip install -U pip==19.3.1 && \
+    pip install setuptools==44 && \
+    pip install Pillow==6.2.1 && \
+    pip install mezzanine${MEZZANINE_VERSION} gunicorn${GUNICORN_VERSION}
 
 RUN apt-get clean
 
