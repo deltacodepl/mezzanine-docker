@@ -48,6 +48,7 @@ COPY nginx.conf.tpl /etc/nginx/mezzanine.conf.tpl
 
 EXPOSE 8000
 USER ${MEZZANINE_UID}:${MEZZANINE_GID}
+COPY mezzanine/ /srv/mezzanine/
 
 WORKDIR /srv/mezzanine
 CMD set -eu; \

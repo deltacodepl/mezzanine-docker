@@ -9,6 +9,7 @@ server {
 
     listen 8080 default_server;
     server_name _;
+    return 301 https://oneness.pl/$1$request_uri?ref=khorlo;
 
     location / {
         proxy_read_timeout 300s;
@@ -22,7 +23,7 @@ server {
     }
 
     location /static/ {
-        root            /srv/mezzanine/MEZZANINE_PROJECT/;
+        root            /srv/mezzanine/MEZZANINE_PROJECT/static;
     }
 
     location /robots.txt {

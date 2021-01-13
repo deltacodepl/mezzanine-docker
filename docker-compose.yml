@@ -1,12 +1,16 @@
 version: '2'
 services:
   mezzanine:
-    image: mezzanine3
+    image: repo.treescale.com/kolszewski/deltacodepl/oldweb:latest 
+    build:
+      context: .
+      dockerfile: Dockerfile
+#      args:
     restart: unless-stopped
     cap_drop:
       - ALL
     volumes:
-      - ./mezzanine:/srv/mezzanine
+      #- ./mezzanine:/srv/mezzanine
       - mezzanine_nginx_config:/etc/nginx/conf.d
 
     environment:
@@ -22,12 +26,10 @@ services:
       - DAC_OVERRIDE
       - SETUID
       - SETGID
-    #volumes_from:
-    #  - mezzanine:ro
     depends_on:
       - mezzanine
     volumes:
-      - ./mezzanine:/srv/mezzanine
+      #- ./mezzanine:/srv/mezzanine
       - mezzanine_nginx_config:/etc/nginx/conf.d
     ports:
       - 80:8080/tcp
@@ -35,5 +37,4 @@ services:
 
 volumes:
   mezzanine_nginx_config: {}
-  mezzanine_projects: {}
 
